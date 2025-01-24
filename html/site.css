@@ -1,0 +1,92 @@
+/* General Body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Top Bar Styling */
+.top-bar {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: right;
+}
+
+/* Signup Page Styling */
+.marioBros {
+    display: flex;
+    justify-content: center;
+}
+
+.signup-box {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin: 50px auto;
+    text-align: left;
+}
+
+.signup-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.signup-box input {
+    width: 90%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.signup-box button {
+    width: 100%;
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+    cursor: pointer;
+}
+
+.signup-box button:hover {
+    background-color: #0056b3;
+}
+/* Posts Page Styling */
+.post-list {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+    overflow: auto;
+    height: 365px;
+}
+
+.post-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.post-thumbnail {
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+    background-color: #ddd;
+}
+
+.post-details {
+    display: inline-block;
+}
+
+.post-details span {
+    display: block;
+    font-size: 0.9em;
+}
+
+.post-item:nth-child(odd) {
+    background-color: #f9f9f9;
+}

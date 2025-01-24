@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <link rel="stylesheet" href="/site.css">
+</head>
+<body>
+    <a href="/index">Home Page!</a>
+    <div class="post-list">
+        % for post in posts:
+        <div class="post-item">
+            <img class="post-thumbnail" src="/html/${post['thumbnail']}" alt="Post Thumbnail">
+            <div class="post-details">
+                <span>Caption: ${post['post_text']}</span>
+                <br>
+                <span>Posted ${post['time_ago']}</span>
+                <span>Views: ${post['views']}</span>
+            </div>
+        </div>
+        % endfor
+    </div>
+</body>
+</html>
