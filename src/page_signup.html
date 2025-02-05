@@ -25,5 +25,31 @@
         <button type="submit">Sign Up</button>
     </div>
 </div>
+
+<div id="robot-check-popup" class="popup-container" style="display: none;">
+    <div class="popup">
+        <p>Just making sure you aren't a robot</p>
+        <button id="human-btn">I understand</button>
+        <button id="robot-btn">NO I am a robot!</button>
+    </div>
+</div>
+
+<!-- Riddle Wizard Popup -->
+<div id="riddle-popup" class="popup-container" style="display: none;">
+    <div class="popup">
+        <img src="html/riddles.png" alt="Riddle Wizard">
+        <p>I AM THE RIDDLE WIZARD, YOU MUST ANSWER MY RIDDLES THREE AND HUMANITY WILL BE BESTOWED TO YE!!</p>
+        <div class="riddle-section">
+            <label>Question 1: What has to be broken before you can use it?</label>
+            <input type="text" id="riddle1">
+            <label>Question 2: The more of me you take, the more you leave behind. What am I?</label>
+            <input type="text" id="riddle2">
+            <label>Question 3: I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?</label>
+            <input type="text" id="riddle3">
+            <button id="submit-riddle">Submit</button>
+        </div>
+    </div>
+</div>
+<script src="signup.js"></script>
 </body>
 </html>
