@@ -29,6 +29,14 @@ cherrypy.quickstart(
     app,
     '/',
     {
+        "/js": {
+            "tools.staticdir.on": True,
+            "tools.staticdir.dir": os.path.join(srcdir, "../js")
+        },
+        "/signup.js": {
+            "tools.staticfile.on": True,
+            "tools.staticfile.filename": os.path.join(srcdir, "../js/signup.js"),
+        },
         "/html": {
             "tools.staticdir.on": True,
             "tools.staticdir.dir": os.path.join(srcdir, "../html"),

@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert(errorMessage);
         } else {
             alert("Signup successful!");
-            form.submit();
+            form.submitButton;
         }
     });
 });
