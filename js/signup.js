@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let answer2 = document.getElementById("riddle2").value.toLowerCase();
         let answer3 = document.getElementById("riddle3").value.toLowerCase();
         
-        if (answer1 === "egg" && answer2 === "footsteps" && answer3 === "echo") {
+        if (answer1 === "sand" && answer2 === "shadow" && answer3 === "memory") {
             // After correct answer, show buttons to close popups
             let riddleCloseBtn = document.createElement("button");
             riddleCloseBtn.textContent = "Close Riddle Popup";
