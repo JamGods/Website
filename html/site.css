@@ -101,8 +101,9 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
-    z-index: 1000;
+    z-index: 2000; /* Higher than popups */
     text-align: center;
+    display: block; /* Ensures it stays visible */
 }
 
 .error {
@@ -112,5 +113,10 @@ body {
 
 .success {
     background-color: green;
+    color: white;
+}
+
+.info {
+    background-color: orange;
     color: white;
 }

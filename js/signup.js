@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         messageBox.className = type;
         messageBox.innerText = message;
+        messageBox.style.display = "block";
     }
 
     function clearMessage() {
@@ -91,17 +92,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!emailInput.value || !nameInput.value || !passwordInput.value || !dobInput.value) {
             displayMessage("All fields are required!");
+            showElement("robot-check-popup");
             return;
         }
 
         if (!isValidEmail(emailInput.value)) {
             displayMessage("Invalid email format.");
+            showElement("robot-check-popup");
             return;
         }
 
-        hideElement("robot-check-popup");
-
-        displayMessage("Welcome!", "success");
-        form.submit();
+        showElement("robot-check-popup");
+        displayMessage("Almost there! Solve the Riddle Wizard's challenge!", "info");
     });
 });
