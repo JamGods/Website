@@ -70,21 +70,21 @@
 <body>
     <a href="/index">Home Page!</a>
     <div class="marioBros">
-        <div class="signup-box">
+        <form class="signup-box">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="example@email.com">
-
+            <input type="email" id="email" placeholder="example@email.com" autocomplete="email">
+        
             <label for="real-name">Real Name</label>
-            <input type="text" id="real-name" placeholder="John Doe">
-
+            <input type="text" id="real-name" placeholder="John Doe" autocomplete="name">
+        
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="1234Password!">
-
+            <input type="password" id="password" placeholder="1234Password!" autocomplete="current-password">
+        
             <label for="dob">Date of Birth</label>
-            <input type="text" id="dob" placeholder="DD/MM/YY">
-
+            <input type="text" id="dob" placeholder="DD/MM/YY" autocomplete="bday">
+        
             <button type="submit">Sign Up</button>
-        </div>
+        </form>        
     </div>
 
     <!-- Robot Check Popup -->

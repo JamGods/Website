@@ -95,15 +95,22 @@ body {
 /* Notification Box */
 #message-box {
     position: fixed;
-    top: 10px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    z-index: 2000; /* Higher than popups */
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    z-index: 9999 !important;
     text-align: center;
-    display: block; /* Ensures it stays visible */
+    min-width: 250px;
+    max-width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: block !important;
+    opacity: 1 !important;
+    background-color: red;
+    color: white;
 }
 
 .error {

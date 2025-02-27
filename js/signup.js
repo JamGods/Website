@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("signup.js is loaded!");
+
     const form = document.querySelector(".signup-box");
     const emailInput = document.getElementById("email");
     const nameInput = document.getElementById("real-name");
     const passwordInput = document.getElementById("password");
     const dobInput = document.getElementById("dob");
-    const submitButton = document.querySelector("button[type='submit']");
     const robotCheckPopup = document.getElementById("robot-check-popup");
     const riddlePopup = document.getElementById("riddle-popup");
 
@@ -17,23 +18,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showElement(id) {
+        console.log(`Showing element: ${id}`);
         document.getElementById(id).style.display = "flex";
     }
 
     function hideElement(id) {
+        console.log(`Hiding element: ${id}`);
         document.getElementById(id).style.display = "none";
     }
 
     function displayMessage(message, type = "error") {
         let messageBox = document.getElementById("message-box");
+
         if (!messageBox) {
+            console.log("Creating message box...");
             messageBox = document.createElement("div");
             messageBox.id = "message-box";
-            document.body.prepend(messageBox);
+            document.body.appendChild(messageBox);
         }
+
+        console.log(`Displaying message: ${message}`);
         messageBox.className = type;
         messageBox.innerText = message;
         messageBox.style.display = "block";
+        messageBox.style.opacity = "1";
+
+        setTimeout(() => {
+            messageBox.classList.add("fade-out");
+            setTimeout(() => {
+                console.log("Removing message box...");
+                messageBox.remove();
+            }, 1000);
+        }, 4000);
     }
 
     function clearMessage() {
@@ -76,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (answer1 === "sand" && answer2 === "shadow" && answer3 === "memory") {
             hideElement("riddle-popup");
             hideElement("robot-check-popup");
+            displayMessage("You are verified as human!", "success");
         } else {
             attempts++;
             if (attempts >= maxAttempts) {
@@ -86,23 +103,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    submitButton.addEventListener("click", function (event) {
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
+        console.log("1");
         clearMessage();
 
         if (!emailInput.value || !nameInput.value || !passwordInput.value || !dobInput.value) {
+            console.log("2");
             displayMessage("All fields are required!");
-            showElement("robot-check-popup");
+            setTimeout(() => showElement("robot-check-popup"), 1000);
             return;
         }
 
         if (!isValidEmail(emailInput.value)) {
+            console.log("3");
             displayMessage("Invalid email format.");
-            showElement("robot-check-popup");
+            setTimeout(() => showElement("robot-check-popup"), 1000);
             return;
         }
 
-        showElement("robot-check-popup");
+        console.log("4");
         displayMessage("Almost there! Solve the Riddle Wizard's challenge!", "info");
+        setTimeout(() => showElement("robot-check-popup"), 1000);
     });
 });
