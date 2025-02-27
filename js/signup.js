@@ -17,16 +17,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showElement(id) {
-        document.getElementById(id).style.display = "flex"; // Change to flex to center the popups
+        document.getElementById(id).style.display = "flex";
     }
 
     function hideElement(id) {
         document.getElementById(id).style.display = "none";
     }
 
+    function displayMessage(message, type = "error") {
+        let messageBox = document.getElementById("message-box");
+        if (!messageBox) {
+            messageBox = document.createElement("div");
+            messageBox.id = "message-box";
+            document.body.prepend(messageBox);
+        }
+        messageBox.className = type;
+        messageBox.innerText = message;
+    }
+
+    function clearMessage() {
+        const messageBox = document.getElementById("message-box");
+        if (messageBox) messageBox.remove();
+    }
+
     function lockoutUser() {
-        const lockoutTime = Date.now() + lockoutDuration; // Calculate lockout end time
-        localStorage.setItem('lockoutTime', lockoutTime); // Store lockout time in localStorage
+        const lockoutTime = Date.now() + lockoutDuration;
+        localStorage.setItem('lockoutTime', lockoutTime);
         document.body.innerHTML = "<h1>You have been locked out. Wait 15 seconds before refreshing.</h1>";
         setTimeout(() => location.reload(), lockoutDuration);
     }
@@ -36,21 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (lockoutTime && Date.now() < lockoutTime) {
             document.body.innerHTML = "<h1>You have been locked out. Wait 15 seconds before refreshing.</h1>";
         } else {
-            localStorage.removeItem('lockoutTime'); // Clear the lockout time when the lockout period is over
+            localStorage.removeItem('lockoutTime');
         }
     }
 
-    // Check if the user is locked out when the page loads
     checkLockout();
 
-    // Robot Check Popup Button Events
     document.getElementById("robot-btn").addEventListener("click", function () {
         hideElement("robot-check-popup");
         lockoutUser();
     });
 
     document.getElementById("human-btn").addEventListener("click", function () {
-        // Do not hide the robot check popup, just show the riddle popup on top
         showElement("riddle-popup");
     });
 
@@ -58,50 +71,37 @@ document.addEventListener("DOMContentLoaded", function () {
         let answer1 = document.getElementById("riddle1").value.toLowerCase();
         let answer2 = document.getElementById("riddle2").value.toLowerCase();
         let answer3 = document.getElementById("riddle3").value.toLowerCase();
-        
-        if (answer1 === "sand" && answer2 === "shadow" && answer3 === "memory") {
-            // After correct answer, show buttons to close popups
-            let riddleCloseBtn = document.createElement("button");
-            riddleCloseBtn.textContent = "Close Riddle Popup";
-            riddleCloseBtn.addEventListener("click", function () {
-                hideElement("riddle-popup");
-                riddleCloseBtn.style.display = "none"; // Hide the button after it is clicked
-            });
-            document.querySelector("#riddle-popup .popup").appendChild(riddleCloseBtn);
 
-            let robotCloseBtn = document.createElement("button");
-            robotCloseBtn.textContent = "Close Robot Check Popup";
-            robotCloseBtn.addEventListener("click", function () {
-                hideElement("robot-check-popup");
-                robotCloseBtn.style.display = "none"; // Hide the button after it is clicked
-            });
-            document.querySelector("#robot-check-popup .popup").appendChild(robotCloseBtn);
+        if (answer1 === "sand" && answer2 === "shadow" && answer3 === "memory") {
+            hideElement("riddle-popup");
+            hideElement("robot-check-popup");
         } else {
             attempts++;
             if (attempts >= maxAttempts) {
                 lockoutUser();
             } else {
-                alert(`Incorrect answers! You have ${maxAttempts - attempts} attempts left.`);
+                displayMessage(`Incorrect answers! You have ${maxAttempts - attempts} attempts left.`);
             }
         }
     });
 
-    // Submit button click handler
     submitButton.addEventListener("click", function (event) {
         event.preventDefault();
-        let errorMessage = "";
+        clearMessage();
 
         if (!emailInput.value || !nameInput.value || !passwordInput.value || !dobInput.value) {
-            errorMessage = "All fields are required.";
-        } else if (!isValidEmail(emailInput.value)) {
-            errorMessage = "Invalid email format.";
+            displayMessage("All fields are required!");
+            return;
         }
 
-        if (errorMessage) {
-            showElement("robot-check-popup");
-        } else {
-            alert("Signup successful!");
-            form.submit();
+        if (!isValidEmail(emailInput.value)) {
+            displayMessage("Invalid email format.");
+            return;
         }
+
+        hideElement("robot-check-popup");
+
+        displayMessage("Welcome!", "success");
+        form.submit();
     });
 });
